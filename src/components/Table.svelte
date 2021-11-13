@@ -7,7 +7,7 @@
   {#each lines as boxes, i}
     <tr>
       {#each boxes as box, i}
-        <td on:click={handleClick} class={box} />
+        <td on:click={handleClick} style={`background-color: ${box};`} />
       {/each}
     </tr>
   {/each}
@@ -17,9 +17,5 @@
   td {
     width: 2rem;
     height: 2rem;
-  }
-
-  .lightgray {
-    background-color: lightgray;
   }
 </style>

@@ -3,8 +3,9 @@
 </script>
 
 <p class="instructions">
-  <span class="playerName {playerColor}">{playerColor} player</span>, choose
-  your box :
+  <span class="playerName" style={`color: ${playerColor}`}
+    >{playerColor} player</span
+  >, it's your turn to choose a box :
 </p>
 
 <style>
@@ -18,13 +19,5 @@
 
   .instructions:first-letter {
     text-transform: capitalize;
-  }
-
-  .red {
-    color: red;
-  }
-
-  .blue {
-    color: blue;
   }
 </style>
