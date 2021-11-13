@@ -1,14 +1,16 @@
-<script>
+<script lang="ts">
   import { checkWin } from "../helpers/checkWin";
-  console.log("adsadsa",checkWin)
   export let changePlayerTurn;
   export let playerColor;
   export let setGameFinished;
   export let isGameFinished;
-  let lines = new Array(25).fill(0).map(() => new Array(25).fill("lightgray"));
-  const handleClick = (i, j) => {
-    lines[i][j] = playerColor;
-    if (checkWin(lines, i,j)) setGameFinished();
+  let lines: string[][] = new Array(25)
+    .fill(0)
+    .map(() => new Array(25).fill("lightgray"));
+
+  const handleClick: (line: number, col: number) => void = (line, col) => {
+    lines[line][col] = playerColor;
+    if (checkWin(lines, line, col)) setGameFinished();
     else changePlayerTurn();
   };
 </script>

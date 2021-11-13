@@ -4,15 +4,22 @@
   export let name: string;
   export let playerColor: "red" | "blue" = "red";
   export let isGameFinished: boolean = false;
-  function changePlayerTurn() {
+  const changePlayerTurn: () => void = () => {
     playerColor = playerColor === "red" ? "blue" : "red";
-  }
+  };
 </script>
 
 <main>
   <h1>{name}</h1>
   <Instructions {playerColor} />
-  <Table {isGameFinished} {changePlayerTurn} {playerColor} setGameFinished={()=>{isGameFinished=true}}/>
+  <Table
+    {isGameFinished}
+    {changePlayerTurn}
+    {playerColor}
+    setGameFinished={() => {
+      isGameFinished = true;
+    }}
+  />
 </main>
 
 <style>

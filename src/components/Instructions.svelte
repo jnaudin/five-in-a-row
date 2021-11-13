@@ -1,5 +1,5 @@
-<script>
-  export let playerColor;
+<script lang="ts">
+  export let playerColor: string;
 </script>
 
 <p class="instructions">
