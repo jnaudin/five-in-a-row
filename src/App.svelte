@@ -1,6 +1,7 @@
 <script lang="ts">
   import Instructions from "./components/Instructions.svelte";
   import Table from "./components/Table.svelte";
+  import WinnerMessage from "./components/WinnerMessage.svelte";
   export let name: string;
   export let playerColor: "red" | "blue" = "red";
   export let isGameFinished: boolean = false;
@@ -11,7 +12,13 @@
 
 <main>
   <h1>{name}</h1>
-  <Instructions {playerColor} />
+
+  {#if isGameFinished}
+    <WinnerMessage {playerColor} />
+  {:else}
+    <Instructions {playerColor} />
+  {/if}
+
   <Table
     {isGameFinished}
     {changePlayerTurn}
