@@ -3,7 +3,7 @@
   import Table from "./components/Table.svelte";
   export let name: string;
   export let playerColor: "red" | "blue" = "red";
-  function handleClick() {
+  function changePlayerTurn() {
     playerColor = playerColor === "red" ? "blue" : "red";
   }
 </script>
@@ -11,7 +11,7 @@
 <main>
   <h1>{name}</h1>
   <Instructions {playerColor} />
-  <Table {handleClick} />
+  <Table {changePlayerTurn} {playerColor} />
 </main>
 
 <style>
