@@ -8,13 +8,17 @@
   const changePlayerTurn: () => void = () => {
     playerColor = playerColor === "red" ? "blue" : "red";
   };
+  const resetGame: () => void = () => {
+    playerColor = "red";
+    isGameFinished = false;
+  };
 </script>
 
 <main>
   <h1>{name}</h1>
 
   {#if isGameFinished}
-    <WinnerMessage {playerColor} />
+    <WinnerMessage {resetGame} {playerColor} />
   {:else}
     <Instructions {playerColor} />
   {/if}
