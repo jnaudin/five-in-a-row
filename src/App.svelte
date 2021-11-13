@@ -1,5 +1,6 @@
 <script lang="ts">
   import Instructions from "./components/Instructions.svelte";
+  import Table from "./components/Table.svelte";
   export let name: string;
   export let playerColor: "red" | "blue" = "red";
   function handleClick() {
@@ -8,9 +9,9 @@
 </script>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <Instructions playerColor = {playerColor}/>
-  <div on:click={handleClick}>todo boxes</div>
+  <h1>{name}</h1>
+  <Instructions {playerColor} />
+  <Table {handleClick} />
 </main>
 
 <style>
