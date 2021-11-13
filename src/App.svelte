@@ -1,6 +1,7 @@
 <script lang="ts">
+  import Instructions from "./components/Instructions.svelte";
   export let name: string;
-  let playerColor: "red" | "blue" = "red";
+  export let playerColor: "red" | "blue" = "red";
   function handleClick() {
     playerColor = playerColor === "red" ? "blue" : "red";
   }
@@ -8,10 +9,7 @@
 
 <main>
   <h1>Hello {name}!</h1>
-  <p class="instructions">
-    <span class="playerName {playerColor}">{playerColor} player</span>, choose
-    your box.
-  </p>
+  <Instructions playerColor = {playerColor}/>
   <div on:click={handleClick}>todo boxes</div>
 </main>
 
@@ -28,23 +26,6 @@
     text-transform: uppercase;
     font-size: 4em;
     font-weight: 100;
-  }
-
-  .playerName {
-    font-weight: 500;
-  }
-  .instructions {
-    display: block;
-  }
-  .instructions:first-letter {
-    text-transform: capitalize;
-  }
-  .red {
-    color: red;
-  }
-
-  .blue {
-    color: blue;
   }
 
   @media (min-width: 640px) {
