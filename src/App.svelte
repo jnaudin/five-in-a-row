@@ -3,6 +3,7 @@
   import Table from "./components/Table.svelte";
   export let name: string;
   export let playerColor: "red" | "blue" = "red";
+  export let isGameFinished: boolean = false;
   function changePlayerTurn() {
     playerColor = playerColor === "red" ? "blue" : "red";
   }
@@ -11,7 +12,7 @@
 <main>
   <h1>{name}</h1>
   <Instructions {playerColor} />
-  <Table {changePlayerTurn} {playerColor} />
+  <Table {isGameFinished} {changePlayerTurn} {playerColor} setGameFinished={()=>{isGameFinished=true}}/>
 </main>
 
 <style>

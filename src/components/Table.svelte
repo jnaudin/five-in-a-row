@@ -1,10 +1,15 @@
 <script>
+  import { checkWin } from "../helpers/checkWin";
+  console.log("adsadsa",checkWin)
   export let changePlayerTurn;
   export let playerColor;
-  let lines = new Array(15).fill(0).map(() => new Array(15).fill("lightgray"));
+  export let setGameFinished;
+  export let isGameFinished;
+  let lines = new Array(25).fill(0).map(() => new Array(25).fill("lightgray"));
   const handleClick = (i, j) => {
-    changePlayerTurn();
     lines[i][j] = playerColor;
+    if (checkWin(lines, i,j)) setGameFinished();
+    else changePlayerTurn();
   };
 </script>
 
@@ -13,7 +18,7 @@
     <tr>
       {#each boxes as box, j}
         <td
-          on:click={() => handleClick(i, j)}
+          on:click={() => !isGameFinished && handleClick(i, j)}
           style={`background-color: ${box};`}
         />
       {/each}
