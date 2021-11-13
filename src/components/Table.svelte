@@ -1,21 +1,37 @@
 <script lang="ts">
+  import { nbLines, nbCols } from "../stores.js";
   import { checkWin } from "../helpers/checkWin";
   export let changePlayerTurn;
   export let playerColor;
   export let setGameFinished;
   export let isGameFinished;
 
-  let lines: string[][] = new Array(25)
-    .fill(0)
-    .map(() => new Array(25).fill("lightgray"));
+  let nbLinesValue: number;
+  let nbColsValue: number;
+
+  nbLines.subscribe((value) => {
+    nbLinesValue = value;
+  });
+
+  nbCols.subscribe((value) => {
+    nbColsValue = value;
+  });
+
+  let lines: string[][];
+  $: {
+    lines = new Array(+nbLinesValue)
+      .fill(0)
+      .map(() => new Array(+nbColsValue).fill("lightgray"));
+  }
 
   const resetLines = () => {
-    lines = lines.map(() => new Array(25).fill("lightgray"));
+    lines = lines.map(() => new Array(+nbLinesValue).fill("lightgray"));
   };
 
   const handleClick: (line: number, col: number) => void = (line, col) => {
     lines[line][col] = playerColor;
-    if (checkWin(lines, line, col)) setGameFinished();
+    if (checkWin(lines, line, col, nbLinesValue, nbColsValue))
+      setGameFinished();
     else changePlayerTurn();
   };
 

@@ -1,10 +1,12 @@
 <script lang="ts">
   import Instructions from "./components/Instructions.svelte";
+  import Params from "./components/Params.svelte";
   import Table from "./components/Table.svelte";
   import WinnerMessage from "./components/WinnerMessage.svelte";
   export let name: string;
   export let playerColor: "red" | "blue" = "red";
   export let isGameFinished: boolean = false;
+
   const changePlayerTurn: () => void = () => {
     playerColor = playerColor === "red" ? "blue" : "red";
   };
@@ -22,6 +24,7 @@
   {:else}
     <Instructions {playerColor} />
   {/if}
+  <Params />
 
   <Table
     {isGameFinished}

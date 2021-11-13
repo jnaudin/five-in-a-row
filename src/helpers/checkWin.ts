@@ -22,11 +22,11 @@ const nbUpLeft: countProps = (grid, line, col) => {
   return nbBox;
 };
 
-const nbDownLeft: countProps = (grid, line, col) => {
+const nbDownLeft: countProps = (grid, line, col, nbLines) => {
   let nbBox = 0;
   for (
     let colc = col - 1, linec = line + 1;
-    colc > 0 && linec < 25 && grid[linec][colc] === grid[line][col];
+    colc > 0 && linec < nbLines && grid[linec][colc] === grid[line][col];
     colc--, linec++
   ) {
     nbBox++;
@@ -34,11 +34,11 @@ const nbDownLeft: countProps = (grid, line, col) => {
   return nbBox;
 };
 
-const nbRight: countProps = (grid, line, col) => {
+const nbRight: countProps = (grid, line, col, nbLines, nbCols) => {
   let nbBox = 0;
   for (
     let colc = col + 1;
-    colc < 25 && grid[line][colc] === grid[line][col];
+    colc < nbCols && grid[line][colc] === grid[line][col];
     colc++
   ) {
     nbBox++;
@@ -46,11 +46,11 @@ const nbRight: countProps = (grid, line, col) => {
   return nbBox;
 };
 
-const nbUpRight: countProps = (grid, line, col) => {
+const nbUpRight: countProps = (grid, line, col, nbLines, nbCols) => {
   let nbBox = 0;
   for (
     let colc = col + 1, linec = line - 1;
-    colc < 25 && linec > 0 && grid[linec][colc] === grid[line][col];
+    colc < nbCols && linec > 0 && grid[linec][colc] === grid[line][col];
     colc++, linec--
   ) {
     nbBox++;
@@ -58,11 +58,11 @@ const nbUpRight: countProps = (grid, line, col) => {
   return nbBox;
 };
 
-const nbDownRight: countProps = (grid, line, col) => {
+const nbDownRight: countProps = (grid, line, col, nbLines, nbCols) => {
   let nbBox = 0;
   for (
     let linec = line + 1, colc = col + 1;
-    linec < 25 && colc < 25 && grid[linec][colc] === grid[line][col];
+    linec < nbLines && colc < nbCols && grid[linec][colc] === grid[line][col];
     linec++, colc++
   ) {
     nbBox++;
@@ -82,11 +82,11 @@ const nbUp: countProps = (grid, line, col) => {
   return nbBox;
 };
 
-const nbDown: countProps = (grid, line, col) => {
+const nbDown: countProps = (grid, line, col, nbLines) => {
   let nbBox = 0;
   for (
     let linec = line + 1;
-    linec < 25 && grid[linec][col] === grid[line][col];
+    linec < nbLines && grid[linec][col] === grid[line][col];
     linec++
   ) {
     nbBox++;
@@ -94,11 +94,31 @@ const nbDown: countProps = (grid, line, col) => {
   return nbBox;
 };
 
-type countProps = (grid: string[][], line: number, col: number) => number;
-type CheckWinProps = (grid: string[][], line: number, col: number) => boolean;
+type countProps = (
+  grid: string[][],
+  line: number,
+  col: number,
+  nbLines?: number,
+  nbCols?: number
+) => number;
+type CheckWinProps = (
+  grid: string[][],
+  line: number,
+  col: number,
+  nbLines: number,
+  nbCols: number
+) => boolean;
 
-export const checkWin: CheckWinProps = (grid, line, col) =>
-  nbLeft(grid, line, col) + nbRight(grid, line, col) >= 4 ||
-  nbUpLeft(grid, line, col) + nbDownRight(grid, line, col) >= 4 ||
-  nbDownLeft(grid, line, col) + nbUpRight(grid, line, col) >= 4 ||
-  nbUp(grid, line, col) + nbDown(grid, line, col) >= 4;
+export const checkWin: CheckWinProps = (grid, line, col, nbLines, nbCols) =>
+  nbLeft(grid, line, col, nbLines, nbCols) +
+    nbRight(grid, line, col, nbLines, nbCols) >=
+    4 ||
+  nbUpLeft(grid, line, col, nbLines, nbCols) +
+    nbDownRight(grid, line, col, nbLines, nbCols) >=
+    4 ||
+  nbDownLeft(grid, line, col, nbLines) +
+    nbUpRight(grid, line, col, nbLines, nbCols) >=
+    4 ||
+  nbUp(grid, line, col, nbLines, nbCols) +
+    nbDown(grid, line, col, nbLines, nbCols) >=
+    4;
