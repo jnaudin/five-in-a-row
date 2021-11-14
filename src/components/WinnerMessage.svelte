@@ -7,7 +7,7 @@
   <span class="playerName" style={`color: ${playerColor}`}
     >{playerColor} player</span
   >
-  WON 😱
+  WON 🎉🎉🎉
   <button on:click={resetGame}>Replay</button>
 </h2>
 

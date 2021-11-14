@@ -29,10 +29,12 @@
   };
 
   const handleClick: (line: number, col: number) => void = (line, col) => {
-    lines[line][col] = playerColor;
-    if (checkWin(lines, line, col, nbLinesValue, nbColsValue))
-      setGameFinished();
-    else changePlayerTurn();
+    if (!isGameFinished) {
+      lines[line][col] = playerColor;
+      if (checkWin(lines, line, col, nbLinesValue, nbColsValue))
+        setGameFinished();
+      else changePlayerTurn();
+    }
   };
 
   $: if (!isGameFinished) resetLines();
@@ -43,7 +45,7 @@
     <tr>
       {#each boxes as box, j}
         <td
-          on:click={() => !isGameFinished && handleClick(i, j)}
+          on:click={() => box === "lightgray" && handleClick(i, j)}
           style={`background-color: ${box};`}
         />
       {/each}
