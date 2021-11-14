@@ -18,15 +18,13 @@
   });
 
   let lines: string[][];
-  $: {
-    lines = new Array(+nbLinesValue)
+  const initLines = (nbLines: number, nbCols: number) => {
+    lines = new Array(nbLines)
       .fill(0)
-      .map(() => new Array(+nbColsValue).fill("lightgray"));
-  }
-
-  const resetLines = () => {
-    lines = lines.map(() => new Array(+nbLinesValue).fill("lightgray"));
+      .map(() => new Array(nbCols).fill("lightgray"));
   };
+
+  initLines(nbLinesValue, nbColsValue);
 
   const handleClick: (line: number, col: number) => void = (line, col) => {
     if (!isGameFinished) {
@@ -37,7 +35,7 @@
     }
   };
 
-  $: if (!isGameFinished) resetLines();
+  $: if (!isGameFinished) initLines(nbLinesValue, nbColsValue);
 </script>
 
 <table>

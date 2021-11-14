@@ -12,8 +12,8 @@
     nbColsValue = value;
   });
 
-  const updateNbLines = (event) => nbLines.set(event.target.value);
-  const updateNbCols = (event) => nbCols.set(event.target.value);
+  const updateNbLines = (event) => nbLines.set(+event.target.value);
+  const updateNbCols = (event) => nbCols.set(+event.target.value);
 </script>
 
 <h2>
