@@ -2,7 +2,7 @@ const nbLeft: countProps = (grid, line, col) => {
   let nbBox = 0;
   for (
     let colc = col - 1;
-    colc > 0 && grid[line][colc] === grid[line][col];
+    colc >= 0 && grid[line][colc] === grid[line][col];
     colc--
   ) {
     nbBox++;
@@ -14,7 +14,7 @@ const nbUpLeft: countProps = (grid, line, col) => {
   let nbBox = 0;
   for (
     let colc = col - 1, linec = line - 1;
-    colc > 0 && linec > 0 && grid[linec][colc] === grid[line][col];
+    colc >= 0 && linec >= 0 && grid[linec][colc] === grid[line][col];
     colc--, linec--
   ) {
     nbBox++;
@@ -26,7 +26,7 @@ const nbDownLeft: countProps = (grid, line, col, nbLines) => {
   let nbBox = 0;
   for (
     let colc = col - 1, linec = line + 1;
-    colc > 0 && linec < nbLines && grid[linec][colc] === grid[line][col];
+    colc >= 0 && linec < nbLines && grid[linec][colc] === grid[line][col];
     colc--, linec++
   ) {
     nbBox++;
@@ -50,7 +50,7 @@ const nbUpRight: countProps = (grid, line, col, nbLines, nbCols) => {
   let nbBox = 0;
   for (
     let colc = col + 1, linec = line - 1;
-    colc < nbCols && linec > 0 && grid[linec][colc] === grid[line][col];
+    colc < nbCols && linec >= 0 && grid[linec][colc] === grid[line][col];
     colc++, linec--
   ) {
     nbBox++;
