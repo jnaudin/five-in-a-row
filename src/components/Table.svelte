@@ -44,7 +44,7 @@
       {#each boxes as box, j}
         <td
           on:click={() => box === "lightgray" && handleClick(i, j)}
-          style={`background-color: ${box};`}
+          class={`${box} ${isGameFinished ? "" : `current-${playerColor}`}`}
         />
       {/each}
     </tr>
@@ -52,6 +52,28 @@
 </table>
 
 <style>
+  table {
+    margin: auto;
+  }
+
+  .lightgray {
+    background-color: lightgrey;
+  }
+
+  .current-red.lightgray:hover {
+    background-color: lightsalmon;
+  }
+  .current-blue.lightgray:hover {
+    background-color: lightskyblue;
+  }
+
+  .red {
+    background-color: red;
+  }
+  .blue {
+    background-color: blue;
+  }
+
   td {
     width: 2rem;
     height: 2rem;
