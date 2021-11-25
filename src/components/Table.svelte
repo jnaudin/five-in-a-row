@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { nbLines, nbCols } from "../stores.js";
+  import { params } from "../stores.js";
   import { checkWin } from "../helpers/checkWin";
   export let changePlayerTurn;
   export let playerColor;
@@ -9,12 +9,9 @@
   let nbLinesValue: number;
   let nbColsValue: number;
 
-  nbLines.subscribe((value) => {
-    nbLinesValue = value;
-  });
-
-  nbCols.subscribe((value) => {
-    nbColsValue = value;
+  params.subscribe(({ nbLines, nbCols }) => {
+    nbLinesValue = nbLines;
+    nbColsValue = nbCols;
   });
 
   let lines: string[][];
@@ -35,6 +32,7 @@
     }
   };
 
+  // init array when game restarts
   $: if (!isGameFinished) initLines(nbLinesValue, nbColsValue);
 </script>
 

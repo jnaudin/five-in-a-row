@@ -1,19 +1,18 @@
 <script lang="ts">
-  import { nbLines, nbCols } from "../stores.js";
+  import { params } from "../stores.js";
 
   let nbLinesValue: number;
   let nbColsValue: number;
 
-  nbLines.subscribe((value) => {
-    nbLinesValue = value;
+  params.subscribe(({ nbLines, nbCols }) => {
+    nbLinesValue = nbLines;
+    nbColsValue = nbCols;
   });
 
-  nbCols.subscribe((value) => {
-    nbColsValue = value;
-  });
-
-  const updateNbLines = (event) => nbLines.set(+event.target.value);
-  const updateNbCols = (event) => nbCols.set(+event.target.value);
+  const updateNbLines = (event) =>
+    params.set({ nbCols: nbColsValue, nbLines: +event.target.value });
+  const updateNbCols = (event) =>
+    params.set({ nbLines: nbLinesValue, nbCols: +event.target.value });
 </script>
 
 <h2>
